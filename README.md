@@ -56,7 +56,8 @@ cp out/kbuos.bin isodir/boot/kbuos.bin
 ```bash
 grub-mkrescue -o out/kbuos.iso isodir
 ```
-
+## Or download compiled ISO image
+- **[download](https://github.com/utmp/KbuOS-bootloader/releases/download/0.1/kbuos.iso)**
 ## Running the OS
 
 ### Using QEMU
