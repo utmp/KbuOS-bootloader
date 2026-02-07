@@ -1,4 +1,4 @@
-# KbuOS
+# KbuOS bootloader
 
 A minimal operating system kernel built from scratch for learning purposes. This project was created for the **build-your-own-x** challenge.
 
@@ -42,35 +42,19 @@ gcc -m32 -ffreestanding -c kernel.c -o out/kernel.o
 ### Step 3: Link everything together
 
 ```bash
-gcc -m32 -T linker.ld -o out/myos.bin -ffreestanding -nostdlib out/boot.o out/kernel.o
+gcc -m32 -T linker.ld -o out/kbuos.bin -ffreestanding -nostdlib out/boot.o out/kernel.o
 ```
 
 ### Step 4: Copy the binary to isodir
 
 ```bash
-cp out/myos.bin isodir/boot/myos.bin
+cp out/kbuos.bin isodir/boot/kbuos.bin
 ```
 
 ### Step 5: Create a bootable ISO
 
 ```bash
-grub-mkrescue -o out/myos.iso isodir
-```
-
-## Quick Build (All in One)
-
-Run all build steps at once:
-
-```bash
-# Create output directory if it doesn't exist
-mkdir -p out
-
-# Build everything
-nasm -f elf32 boot.asm -o out/boot.o && \
-gcc -m32 -ffreestanding -c kernel.c -o out/kernel.o && \
-gcc -m32 -T linker.ld -o out/myos.bin -ffreestanding -nostdlib out/boot.o out/kernel.o && \
-cp out/myos.bin isodir/boot/myos.bin && \
-grub-mkrescue -o out/myos.iso isodir
+grub-mkrescue -o out/kbuos.iso isodir
 ```
 
 ## Running the OS
@@ -78,7 +62,7 @@ grub-mkrescue -o out/myos.iso isodir
 ### Using QEMU
 
 ```bash
-qemu-system-i386 -cdrom out/myos.iso
+qemu-system-i386 -cdrom out/kbuos.iso
 ```
 
 ## Output Files
@@ -87,8 +71,8 @@ qemu-system-i386 -cdrom out/myos.iso
 |------|-------------|
 | `out/boot.o` | Compiled bootloader object file |
 | `out/kernel.o` | Compiled kernel object file |
-| `out/myos.bin` | Linked kernel binary (ELF format) |
-| `out/myos.iso` | Bootable ISO image |
+| `out/kbuos.bin` | Linked kernel binary (ELF format) |
+| `out/kbuos.iso` | Bootable ISO image |
 
 ## How It Works
 
@@ -101,5 +85,5 @@ qemu-system-i386 -cdrom out/myos.iso
 
 <p align="center">
   Made with ❤️ and lots of compilers
-
 </p>
+<p align="center">© Abdulaziz Shamsiev</p>
